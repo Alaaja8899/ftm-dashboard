@@ -14,7 +14,7 @@ const CountCards: React.FC<CountCardsProps> = ({ name, count, icon: Icon, desc }
       <div className="top flex justify-between">
         <h3 className="font-bold">{name}</h3>
         <div className="icon">
-          <Icon className="w-6 h-6" /> {/* Render the component */}
+          <Icon className="w-6 h-6 text-grey-500"  /> {/* Render the component */}
         </div>
       </div>
       <h2 className="count-number font-bold text-3xl">{count}</h2>

@@ -1,11 +1,15 @@
+'use client'
+import ProtectedRoute from '@/components/ProtectedRoute'
 import React from 'react'
 
-function page() {
+function Page() {
   return (
     <div>
+      <ProtectedRoute>
         Hello world
+      </ProtectedRoute>
     </div>
   )
 }
 
-export default page
+export default Page;

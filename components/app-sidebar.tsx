@@ -50,12 +50,12 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "Manage Profiles",
-          url: "/app/manage",
+          title: "Person manage",
+          url: "/app/person-manage",
         },
         {
-          title: "Register Profile",
-          url: "/app/register",
+          title: "Person Register",
+          url: "/app/person-register",
         },
       ],
     },

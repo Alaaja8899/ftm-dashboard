@@ -1,51 +1,48 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { useRouter } from "next/router";
-
-interface User {
-  [key: string]: any;
-}
+'use client'
+import { redirect } from 'next/navigation'
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 interface AuthContextType {
-  user: User | null;
-  login: (userData: User) => void;
-  logout: () => void;
+    user: string;
+    setUser: React.Dispatch<React.SetStateAction<string>>;
+    logged: boolean;
+    setLogged: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const authContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
+interface AuthContextProviderProps {
+    children: ReactNode;
+}
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+function AuthContextProvider({ children }: AuthContextProviderProps) {
+    const [user, setUser] = useState<string>(localStorage.getItem('user') || '');
+    const [logged, setLogged] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (user) {
+            setLogged(true);
+        } else {
+            setLogged(false);
+            redirect('auth/login');
+        }
+    }, [user, logged]);
+
+    const values: AuthContextType = { user, setUser, logged, setLogged };
+
+    return (
+        <authContext.Provider value={values}>
+            {children}
+        </authContext.Provider>
+    );
+}
+
+export const useAuthContext = (): AuthContextType => {
+    const context = useContext(authContext);
+    if (context === undefined) {
+        throw new Error('useAuthContext must be used within an AuthContextProvider');
     }
-  }, []);
+    return context;
+}
 
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-    router.push("/signin");
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export default AuthContextProvider;

@@ -3,6 +3,7 @@ import CountCards from "@/components/CountCards";
 import FamilyTreeComponent from "@/components/FamilyTree";
 import { ModeToggle } from "@/components/ModeToggle";
 import { ChartCom } from "@/components/pie-chart";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { User, User2Icon, UserCheck, UserMinus } from "lucide-react";
 
@@ -38,6 +39,7 @@ const cardItems = [
 export default function Home() {
   return (
     <div className="w-full">
+      <ProtectedRoute>
       <main className="space-y-3">
         <div className="top-head flex items-center justify-between px-6 w-full mt-4 ">
           <SidebarTrigger/>
@@ -56,6 +58,7 @@ export default function Home() {
         
         
       </main>
+      </ProtectedRoute>
     </div>
      );
 }
