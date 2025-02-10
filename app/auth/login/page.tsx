@@ -22,10 +22,10 @@ function Page() {
                 <h2 className="flex gap-1 font-bold text-2xl">Family <TreePalmIcon/> Tree </h2>
                 <p className="text-gray-500">Log in Access your family tree dashboard</p>
                 <Input placeholder="Email / Username" required/>
-                <Input placeholder="Email / Username" required type="password"/>
+                <Input placeholder="Password" required type="password"/>
                 <Button>Sign in </Button>
 
-                <Link href={'/'}>
+                <Link href={'/auth/forget'}>
                 Forget Password ?
                 </Link>
 

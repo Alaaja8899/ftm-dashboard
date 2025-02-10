@@ -14,6 +14,7 @@ import {
   // SquareTerminal,
   TreePalm,
   TreePine,
+  Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -38,27 +39,23 @@ const data = {
   },
   navMain: [
     {
-      title: "Filter family group",
-      url: "#",
-      icon: TreePine,
+      title: "Dashboard",
+      url: "/app",
+      icon: PieChart,
+    },
+    {
+      title: "Person Profile",
+      url: "/app/me",
+      icon: Users,
       isActive: true,
       items: [
         {
-          title: "Dhamaan dadka",
-          url: "#",
+          title: "Manage Profiles",
+          url: "/app/manage",
         },
         {
-          title: "Gabdho",
-          url: "#",
-        },
-        {
-          title: "Wiilal",
-          url: "#",
-        },
-        {
-          title: "Waalidiin",
-          url: "#",
-
+          title: "Register Profile",
+          url: "/app/register",
         },
       ],
     },
