@@ -60,10 +60,6 @@ const data = {
           url: "#",
 
         },
-        {
-          title: "Wiilal",
-          url: "#",
-        },
       ],
     },
   ],
