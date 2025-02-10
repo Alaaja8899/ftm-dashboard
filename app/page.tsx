@@ -40,18 +40,18 @@ export default function Home() {
     <SidebarProvider>
       <div className="w-full flex">
         <AppSidebar />
-        <SidebarTrigger/>
         <main className="w-full p-6 space-y-3">
           <div className="top-head flex items-center justify-between w-full mt-5">
-            <h2>Dashboard</h2>
+          <SidebarTrigger/>
+
             <ModeToggle/>
           </div>
-          <div className="count-cards flex gap-2 md:flex-row flex-col">
+          <div className="count-cards flex gap-2 md:flex-row flex-col w-full">
             {cardItems.map(info => (
               <CountCards key={info.name} name={info.name} desc={info.desc} icon={info.icon} count={info.count} />
             ))}
           </div>
-          <div className="hero flex md:flex-row items-start flex-col">
+          <div className="hero w-full flex md:flex-row items-start flex-col">
             <FamilyTreeComponent/>
             <ChartCom/>
           </div>
