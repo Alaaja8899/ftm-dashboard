@@ -1,7 +1,12 @@
+// page.tsx (Sidebar moved here)
 import CountCards from "@/components/CountCards";
+import FamilyTreeComponent from "@/components/FamilyTree";
 import { ModeToggle } from "@/components/ModeToggle";
+import { ChartCom } from "@/components/pie-chart";
 import { User, User2Icon, UserCheck, UserMinus } from "lucide-react";
-
+import "./globals.css";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const cardItems = [
   {
@@ -23,34 +28,35 @@ const cardItems = [
     icon: UserCheck, 
   },
   {
-    name: "Deseaced people",
+    name: "Deceased people",
     desc: "Latest modified 1month ago",
     count:3, 
     icon: UserMinus, 
   },
-]
-
+];
 
 export default function Home() {
   return (
-    <div className="w-full">
-      <main>
-        <div className="top-head flex items-center justify-between p-6 w-full mt-5">
-          <h2>
-            Dashboard
-          </h2>
-
-          
-          <ModeToggle/>
-        </div>
-        <div className="count-cards px-6 flex gap-2 md:flex-row flex-col">
-          {cardItems.map(info=>{
-            return <CountCards key={info.name} name={info.name} desc={info.desc} icon={info.icon} count={info.count} />
-          })}
-        </div>
-        
-        
-      </main>
-    </div>
-     );
+    <SidebarProvider>
+      <div className="w-full flex">
+        <AppSidebar />
+        <SidebarTrigger/>
+        <main className="w-full p-6 space-y-3">
+          <div className="top-head flex items-center justify-between w-full mt-5">
+            <h2>Dashboard</h2>
+            <ModeToggle/>
+          </div>
+          <div className="count-cards flex gap-2 md:flex-row flex-col">
+            {cardItems.map(info => (
+              <CountCards key={info.name} name={info.name} desc={info.desc} icon={info.icon} count={info.count} />
+            ))}
+          </div>
+          <div className="hero flex md:flex-row items-start flex-col">
+            <FamilyTreeComponent/>
+            <ChartCom/>
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
+  );
 }
